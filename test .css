@@ -1,0 +1,9 @@
+body,html{
+  border: 0cap;
+  padding: 0%;
+}
+.header{
+  background-color: aliceblue;
+  height: 50px;
+  box-shadow: 5cap;
+}
