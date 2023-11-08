@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Travel Home</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+    #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -76px 0 0 -76px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 } 
+        to { bottom:0px; opacity:1 }
+    }
+
+    @keyframes animatebottom { 
+        from{ bottom:-100px; opacity:0 } 
+        to{ bottom:0; opacity:1 }
+    }
+
+    #myDiv {
+        display: none;
+        text-align: center;
+    }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    .login {
+        background-color: transparent;
+        color: rgb(0, 0, 0);
+        padding: 10px 20px;
+        font-weight: bolder;
+        margin: 8px 8px;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        right: 15px;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    /* Center the image and position the close button */
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+        position: relative;
+    }
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 365px;
+        top: 0;
+        width: 500px; /* Full width */
+        height: 1200px; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(255, 255, 255, 0.217); /* Fallback color */
+        background-color: rgba(255, 255, 255, 0.176); /* Black w/ opacity */
+        padding-top: 80px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #ffffff;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: #000;
+        font-size: 35px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: red;
+        cursor: pointer;
+    }
+
+    /* Add Zoom Animation */
+    /* .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+    }
+    
+    @keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+    } */
+    .widget-container {
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+        width: 1100px;
+        position: relative ;
+        top:-70px;
+        left: 80px;
+        border-radius: 20px;
+        background-color: transparent;
+    }
+    .widget-container-2 {
+        background-size: cover;
+        background-position: center;
+        height: 520px;
+        width: 1200px;
+        position: relative ;
+        left: 45px;
+        right: 20px;
+        top: 30px;
+        bottom: 20px;
+        border-radius: 20px;
+        background-color: transparent;
+    
+    }
+    .content h1{
+        font-family: Barlow Condensed;
+        font-size: 55px;
+        color: #191d34;
+        letter-spacing: 1px;
+        padding: 50px 0px;
+    }
+    .widget-container-2 content{
+        margin-top: 20%;
+    }
+
+    .widget-container:hover{
+        backdrop-filter: blur(5px) ;
+    }
+    .widget-container-2:hover{
+        backdrop-filter: blur(5px) ;
+        
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+    }
+    html,body{
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        overflow-x: hidden;
+    }
+    div{
+        margin: 0px;
+        padding: 0%;
+    }
+    .background{
+        background-image: url("luca-bravo-O453M2Liufs-unsplash.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        position: relative;
+        overflow-y: hidden; /* Hide vertical scrollbar */
+        overflow-x: hidden
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: transparent;
+        text-align-last: center;
+        border: 2px solid #000000;
+        border-style: dotted;
+        backdrop-filter: blur(15px);
+    }
+
+
+    li {
+        float: left;
+        margin: 5px;
+        padding-left: 30px;
+        display: flex;
+        border-radius: 20px;        
+    }
+
+    li a {
+        display: block;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+        justify-content: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        font-weight: 200;
+    }
+    .Dark{
+        background-image: url("fotor-20231107193518.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        position: relative;
+    }
+    .dark ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: transparent;
+        text-align-last: center;
+        border: 2px solid #000000;
+        border-style: dotted;
+    }
+    .animation-container{
+        position: relative;
+        top: 0px;
+        width: 90%;
+        height: 300px;
+    }
+
+    .aitem1{
+        height: 150px;
+        width: 150px;
+        border-radius: 80%;
+        background-size: cover;
+        float: left;
+        position: relative;
+        left: 130px;
+        text-align-last: center;
+        background-color: #fefefe93;
+    }
+    .aitem2{
+        height: 150px;
+        width: 150px;
+        border-radius: 80%;
+        border-color: #000;
+        background-size: cover;
+        float: left; 
+        position: absolute;
+        background-repeat: no-repeat;
+        position: relative;
+        left: 150px;
+        margin-left: 20px;
+        text-align-last: center;
+        background-color: #fefefe93;
+    }
+    .aitem3{
+        height: 150px;
+        width: 150px;
+        border-radius: 80%;
+        background-size: cover;
+        float: left;
+        position: relative;
+        left: 150px;
+        margin-left: 20px;
+        text-align-last: center;
+        background-color: #fefefe93;
+    }
+    .aitem4{
+        height: 150px;
+        width: 150px;
+        border-radius: 80%;
+        background-size: cover;
+        float: left;
+        position: relative;
+        left: 150px;
+        margin-left: 20px;
+        text-align-last: center;
+        background-color: #fefefe93;
+    }
+    .aitem5{
+        height: 150px;
+        width: 150px;
+        border-radius: 80%;
+        background-size: cover;
+        float: left;
+        background-color: #fefefe93;
+        animation-iteration-count: infinite;
+        animation-fill-mode:none; 
+        position: relative;
+        left: 150px;
+        margin-left: 20px;
+        text-align-last: center;
+    }
+
+    .welcome {
+        position: relative;
+        top: 20px;
+    }
+
+    .welcome h1 {
+    font-size: 70px;
+    font-weight: normal;
+    color: #fde02f;
+    font-family: Satisfy;
+    top: 50px;
+    }
+    .services {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service-item {
+        flex: 1;
+        padding: 50px 10px;
+        border: lightcyan solid 1px;
+        text-align: center;
+        margin: 10px 50px;
+        transition: all 1s;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .service-item:hover {
+        box-shadow: 3px 3px 20px lightsteelblue;
+        background-color: #f3f3f3b9;
+    }
+
+    .service-item h2 {
+        font-family: Barlow Condensed;
+        font-size: 18px;
+        width: 120px;
+        color: #001f38;
+        flex: 1;
+    }
+
+    .service-item img {
+        width: 60px;
+        height: 60px;
+        flex: 1;
+    }
+    .down-arrow { 
+            width: 0;  
+            height: 0;
+            z-index: 1;
+            padding: 20px;  
+            border-left: 50px solid transparent; 
+            border-right: 50px solid transparent;   
+            border-top: 50px solid rgb(26, 27, 26); 
+            margin: 2rem; 
+            position: relative;
+            top: 20px;
+            left: 36%;
+            background-color:transparent;
+            
+    } 
+    .rect{
+        flex: 1;
+        height: 5px;
+        width: auto;
+        padding: 10px 10px;
+        background-color: #000;
+        border: rgb(225, 225, 225) solid 1px;
+        text-align: center;
+        margin: 50px 50px;
+        transition: all 1s;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        z-index: 2;
+    }
+    .rect:hover{
+        box-shadow: 3px 3px 20px lightsteelblue;
+    }
+    .places-text {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .places-text small {
+        font-family: Roboto;
+        color: #ffc342;
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
+    .places-text h2 {
+        font-family: Barlow Condensed;
+        font-size: 55px;
+        color: #191d34;
+        letter-spacing: 1px;
+    }
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 30px;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+        position: relative;
+        top: -150px;
+    }
+
+    .card {
+        border: 1px solid lightgray;
+        box-shadow: 2px 2px 6px 0 rgb(0, 0, 0);
+        border-radius: 8px;
+        width: 90%;
+        height: 430px;
+    }
+
+    .card img {
+        max-width: 100%;
+        height: 270px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: .5s ease;
+    }
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .card:hover .image {
+        opacity: 0.3;
+    }
+
+    .card:hover .middle {
+        opacity: 1;
+    }
+
+    .txt {
+        background-color: #f0ec0c9a;
+        color: rgb(5, 5, 5);
+        font-size: 20px;
+        font-weight: 100;
+        padding: 16px 32px;
+        font-family: Barlow Condensed;
+        line-height: 40px;
+    }
+
+    .cards .text {
+        padding: 0px;
+        font-family: Barlow Condensed;
+        line-height: 40px;
+    }
+
+    .cards .card-box {
+        display: flex;
+        flex-flow: row;
+        background-color: #fde02f;
+        font-size: 18px;
+        font-family: Roboto;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        top: -600px;
+        left: 25px;
+        height: 40px;
+        border-radius: 10px;
+        width:290px;
+        cursor: pointer;
+    }
+
+    .cards .time {
+        flex: 1;
+    }
+
+    .cards .location {
+        flex: 2;
+    }
+
+    .cards .cost {
+        color: #4cafad;
+        font-size: 20px;
+    }
+    .zoom-img {
+        float: left;
+        position: relative;
+        width: 100%;
+        height: 320px;
+        overflow: hidden;
+    }
+
+    .zoom-img .img-card {
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .img-card img {
+        -webkit-transition: 0.8s ease;
+        transition: 0.8s ease;
+    }
+
+    .card:hover .zoom-img img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+    .form {
+        flex: 1;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        width: 70%;
+        padding: 1% 2%;
+    }
+    input,
+    .date,
+    .book {
+        padding: 15px;
+        margin-right: 10px;
+        font-size: 18px;
+        font-family: Roboto;
+        border-radius: 5px;
+        outline: 0;
+        border: none;
+    }
+
+    input {
+        width: 50%;
+        flex: 2;
+    }
+
+    .date {
+        width: 20%;
+        flex: 1;
+    }
+
+    .book {
+        width: 20%;
+        flex: 1;
+    }
+
+    .book {
+        text-decoration: none;
+        color: #000;
+        text-transform: uppercase;
+        padding: 15px;
+        cursor: pointer;
+        background-color: #fde02f;
+        font-size: 16px;
+        font-weight: normal;
+        font-family: "Barlow Condensed";
+        width: 20%;
+    }
+    .about {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        padding: 150px;
+        position: relative;
+        top: -100px;
+    }
+
+    .about-img {
+        flex: 1;
+    }
+
+    .about-img img {
+        width: 500px;
+        height: 580px;
+        box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3);
+        position: relative;
+        top: -140px;
+    }
+
+    .about-text {
+        flex: 1;
+    /*width: 100px;*/
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+    }
+
+    .about-text small,
+    .about-text p,
+    .about-text input,
+    .about-text a {
+        flex: 1;
+        font-family: Roboto;
+    }
+
+    .about-text small {
+        color: #ffc342;
+        font-size: 18px;
+        position: relative;
+        top: -30px;
+        font-weight: 200;
+    }
+
+    .about-text h2 {
+        flex: 1;
+        font-family: Barlow Condensed;
+        font-size: 60px;
+        color: #060606;
+        width: 450px;
+        position: relative;
+        top: -90px;
+    }
+
+    .about-text label {
+        color: #44ff00;
+        font-weight: bolder;
+        font-family: Roboto;
+        position: relative;
+        top: -250px;
+    }
+
+    .about-text p {
+        width: 500px;
+        line-height: 30px;
+        color: #000000;
+        font-weight: bolder;
+        padding: 50px 0;
+        position: relative;
+        top: -200px;
+    }
+
+    .about-text a {
+        background-color: #fff;
+        border: 2px solid rgb(0, 180, 33);
+        text-decoration: none;
+        border-radius: 5px;
+        width: 180px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 50px;
+        color:rgb(0, 180, 33);
+        font-weight: bolder;
+        font-size: 14px;
+    }
+
+    .about-text a:hover {
+        background-color:rgb(0, 180, 33);
+        color: #fff;
+    }
+
+
+</style>
+
+<!-- <body onload="myFunction()" style="margin:0;">
+    <div id="loader"></div>
+</body> -->
+<section id="Bg" class="background"  >
+    <section id="home">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="map.html">Map</a></li>
+            <li><a href="Photos.html">Photos</a></li>
+            <li style="float:right; background-color: #04AA6D;"><button class="login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></li>
+        </ul> 
+            <div id="id01" class="modal">
+                    <form class="modal-content animate" action="/action_page.php" method="post">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <img src="incog.png" alt="Avatar" class="avatar">
+                    </div>
+                
+                    <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
+                
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        
+                        <button type="submit">Login</button>
+                        <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label>
+                    </div>
+                
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
+                    </form>
+            </div>
+            <div style="background-color: transparent; position: relative;left: 1200px;padding: 5px 0px; top: 10px;margin: 0; text-align-last: right; width: 20px;">
+                <button style="height: 30px; width: auto; background-color: rgba(22, 21, 21, 0.673)212;" id="myBtn" onclick="change()">Dark</button>
+            </div>
+                <div class="widget-container">
+                    <div class="Content">
+                        <div class="welcome"><h1><i>Traveling is a craze and we welcome you to Explore it!!</i></h1></div>
+                    </div>
+                    <div class="animation-container">
+                        <a href="#About"><button class="aitem1"><i style=" top: 50%;">About us</i></button></a>
+                        <a href="#reco"><button class="aitem2"><i style=" top: 50%;">Recommendation</i></button></a>
+                        <a href="#Offers"><button class="aitem3"><i style=" top: 50%;">Offers</i></button></a>
+                        <a href="#book"><button class="aitem4"><i style=" top: 50%;">Booking</i></button></a>
+                        <a href="#cntus"><button class="aitem5"><i style=" top: 50%;">Contact us</i></button></a>
+                    </div>
+        
+                </div>
+    </section>
+    
+            <section id="About">
+                <div class="widget-container-2" >
+                    <div class="content">
+                        <h1 >----------------- About us -----------------</h1>
+                        <div class="services">
+                            <div class="service-item">
+                                <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293634/tour-guide_onzla9.png">
+                                <h2>8000+ Our Local Guides</h2>
+                            </div>
+                            <div class="service-item">
+                                <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293738/reliability_jbpn4g.png">
+                                <h2>100% Trusted Tour Agency</h2>
+                            </div>
+                            <div class="service-item">
+                                <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293635/experience_a3fduk.png">
+                                <h2>28+ Years of Travel Experience</h2>
+                            </div>
+                            <div class="service-item">
+                                <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293634/feedback_s8z7d9.png">
+                                <h2>98% Our Travelers are Happy</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div>
+                    <div class="rect">
+                        <button style="background-color: transparent;height: 19px;">
+                            <a href="#home" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    prev
+                                </h1>
+                            </a>
+                        </button>
+                        <button class="down-arrow">
+                            <a href="#home" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(-20px,-70px);">
+                                    home
+                                </h1>
+                            </a>
+                        </button>
+                        <button style="background-color: transparent;height: 19px;position: relative;left: 860px;">
+                            <a href="#reco" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    next
+                                </h1>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </section>   
+            <section id="reco">
+                <div class="widget-container-2" >
+                    <div class="content">
+                        <h1 style="position: relative;top: -45px;">-------------Recommendation for spring !!!-------------</h1>
+                    </div>
+                    <div class="cards">
+                        <div class="card">
+                            <div class="zoom-img">
+                                <div class="img-card">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293736/james-wheeler_xqmq2y.jpg">
+                                </div>
+                            </div>
+                            <div class="text">
+                                <span style="position: relative;top: -50px;">⭐⭐⭐⭐⭐</span>
+                                <h2 style="position: relative;top: -70px;">The Dark Forest Adventure</h2>
+                                <p class="cost" style="position: relative;top: -100px;">Rs.1870 / Per Person</p>
+                                <div class="card-box" style="position: relative;top: -120px;">
+                                    <p class="time">🕓 3 Days</p>
+                                    <p class="location">✈ Vancouver, Canada</p>
+                                </div>
+                            </div>
+        
+                        </div>
+                        <div class="card">
+                            <div class="zoom-img">
+                                <div class="img-card">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293755/paris_uj8wum.jpg">
+                                </div>
+                            </div>
+        
+                            <div class="text">
+                                <span style="position: relative;top: -50px;">⭐⭐⭐⭐⭐</span>
+                                <h2 style="position: relative;top: -70px;">The Dark Forest Adventure</h2>
+                                <p class="cost" style="position: relative;top: -100px;">Rs.1870 / Per Person</p>
+                                <div class="card-box" style="position: relative;top: -120px;">
+                                    <p class="time">🕓 3 Days</p>
+                                    <p class="location">✈ Paris, France</p>
+                                </div>
+                            </div>
+        
+                        </div>
+                        <div class="card">
+                            <div class="zoom-img">
+                                <div class="img-card">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293955/monaco_usu7xb.jpg">
+                                </div>
+                            </div>
+        
+                            <div class="text">
+                                <span style="position: relative;top: -50px;">⭐⭐⭐⭐⭐</span>
+                                <h2 style="position: relative;top: -70px;">The Dark Forest Adventure</h2>
+                                <p class="cost" style="position: relative;top: -100px;">Rs.1870 / Per Person</p>
+                                <div class="card-box" style="position: relative;top: -120px;">
+                                    <p class="time">🕓 3 Days</p>
+                                    <p class="location">✈ Monaco, Monaco</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div>
+                    <div class="rect">
+                        <button style="background-color: transparent;height: 19px;">
+                            <a href="#About" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    prev
+                                </h1>
+                            </a>
+                        </button>
+                        <button class="down-arrow">
+                            <a href="#home" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(-20px,-70px);">
+                                    home
+                                </h1>
+                            </a>
+                        </button>
+                        <button style="background-color: transparent;height: 19px;position: relative;left: 860px;">
+                            <a href="#Offers" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    next
+                                </h1>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </section>   
+            <section id="Offers">
+                <div class="widget-container-2" >
+                    <div class="content">
+                        <h1 style="position: relative;top: -45px;">----------------- Offers -----------------</h1>
+                    </div>
+                    <div class="cards">
+                        <div class="card" style="height: 200px;">
+                            <div class="zoom-img">
+                                <div class="img-card" style="height: 200px;">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293755/paris_uj8wum.jpg">
+                                    <div class="middle">
+                                        <div class="txt">15% off</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="height: 200px;">
+                            <div class="zoom-img">
+                                <div class="img-card" style="height: 200px;">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293955/monaco_usu7xb.jpg">
+                                    <div class="middle">
+                                        <div class="txt">20% off</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="height: 200px;">
+                            <div class="zoom-img">
+                                <div class="img-card" style="height: 200px;">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293874/switzerland_tubxcm.jpg">
+                                    <div class="middle">
+                                        <div class="txt">60% off</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="height: 200px;">
+                            <div class="zoom-img">
+                                <div class="img-card" style="height: 200px;">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293673/korea_bxrcj5.jpg">
+                                    <div class="middle">
+                                        <div class="txt">20% off</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="height: 200px;">
+                            <div class="zoom-img">
+                                <div class="img-card" style="height: 200px;">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293736/james-wheeler_xqmq2y.jpg">
+                                    <div class="middle">
+                                        <div class="txt">40% off</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="height: 200px;">
+                            <div class="zoom-img">
+                                <div class="img-card" style="height: 200px;">
+                                    <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293673/night-4336403_1920_demehp.jpg">
+                                    <div class="middle">
+                                        <div class="txt">10% off</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div>
+                    <div class="rect">
+                        <button style="background-color: transparent;height: 19px;">
+                            <a href="#reco" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    prev
+                                </h1>
+                            </a>
+                        </button>
+                        <button class="down-arrow">
+                            <a href="#home" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(-20px,-70px);">
+                                    home
+                                </h1>
+                            </a>
+                        </button>
+                        <button style="background-color: transparent;height: 19px;position: relative;left: 860px;">
+                            <a href="#book" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    next
+                                </h1>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section id="book">
+                <div class="widget-container-2" >
+                    <div class="content">
+                        <h1>----------------- Booking -----------------</h1>
+                    </div>
+                    <div style="position:relative;left: 147px;">
+                        <form class="form">
+                            <input onclick="frm()" type="text" list="mylist" placeholder="Where would you like to go?">
+                            <datalist id="mylist">
+                                <option>London</option>
+                                <option>Canada</option>
+                                <option>Monaco</option>
+                                <option>France</option>
+                                <option>Japan</option>
+                                <option>Switzerland</option>
+                                <option>Seoul</option>
+                            </datalist>
+                            <input type="date" class="date">
+                            <a href="#" class="book">book</a>
+                        </form>
+                    </div>
+                    <div style="background-color: transparent;text-align: center; color: #f3f3f3; font-size: 40px;
+                    font-weight: 100;
+                    padding: 16px 32px;
+                    font-family: Barlow Condensed;
+                    line-height: 40px;">
+                        We will be using your current location !!
+                    </div>
+                </div> 
+                <div>
+                    <div class="rect">
+                        <button style="background-color: transparent;height: 19px;">
+                            <a href="#Offers" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    prev
+                                </h1>
+                            </a>
+                        </button>
+                        <button class="down-arrow">
+                            <a href="#home" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(-20px,-70px);">
+                                    home
+                                </h1>
+                            </a>
+                        </button>
+                        <button style="background-color: transparent;height: 19px;position: relative;left: 860px;">
+                            <a href="#cntus" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    next
+                                </h1>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </section>     
+            <section id="cntus">
+                <div class="widget-container-2" style=".widget-container-2:hover{filter: blur(15px);}" >
+                    <div class="Content">
+                        <div class="about">
+                            <div class="about-img">
+                                <img src="https://res.cloudinary.com/dxssqb6l8/image/upload/v1605293719/outdoor_tjjhxk.jpg">
+                            </div>
+                            <div class="about-text">
+                                <small>ABOUT OUR COMPANY</small>
+                                <h2>We are Travel Support Company</h2>
+                                <p>As a Travel Support Company, our primary goal is to ensure that every traveler's journey is seamless, enjoyable, and stress-free. We are dedicated to providing comprehensive assistance, guidance, and solutions to all travel-related queries and concerns. Our aim is to offer</p>
+                
+                                <label><input style="width: 0px;" type="checkbox" checked>unparalleled support</label>
+                                <label><input style="width: 0px;" type="checkbox" checked>making travel experiences more accessible</label>
+                                <label><input style="width: 0px;" type="checkbox" checked>convenient</label>
+                                <label><input style="width: 0px;" type="checkbox" checked>fulfilling</label>
+                                <a href="#">ABOUT US</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div>
+                    <div class="rect">
+                        <button style="background-color: transparent;height: 19px;">
+                            <a href="#book" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(0px,-20px);">
+                                    prev
+                                </h1>
+                            </a>
+                        </button>
+                        <button class="down-arrow">
+                            <a href="#home" style="text-decoration: none;">
+                                <h1 style="color: rgb(255, 255, 255);transform: translate(-20px,-70px);">
+                                    home
+                                </h1>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+</section>
+<script>
+    var myVar;
+    
+    function myFunction() {
+        myVar = setTimeout(showPage, 3000);
+    }
+    
+    function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+    var x = 0;
+
+    function change() {
+        if (x == 0) {
+        document.getElementById("Bg").className = "Dark";
+        document.getElementById("myBtn").innerHTML = "Light";
+        x = 1;
+        } 
+        else {
+        document.getElementById("Bg").className = "background";
+        document.getElementById("myBtn").innerHTML = "Dark";
+        x = 0;
+        }
+    }
+    function frm(){
+        confirm('Allow your location access');
+    }
+
+</script>
+<style>
+    /* ---responsive----- */
+    @media all and (max-width: 1172px) {
+    .banner-text-item .form {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    }
+
+    .banner-text-item .form input,
+    .banner-text-item .form .date,
+    .banner-text-item .form a {
+        flex: 1;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .banner-text-item .form input {
+        width: 60%;
+    }
+
+    .banner-text-item .form .date {
+        width: 30%;
+    }
+
+    .banner-text-item .form .book {
+        width: 10%;
+        font-size: 14px;
+    }
+
+    .banner-heading h1 {
+        font-size: 60px;
+    }
+    }
+
+    @media all and (max-width: 1414px) {
+    .banner-text-item .form input {
+        width: 40%;
+    }
+
+    .banner-text-item .form .date {
+        width: 30%;
+    }
+
+    .banner-text-item .form .book {
+        width: 20%;
+        font-size: 14px;
+    }
+    }
+
+    @media all and (max-width: 942px) {
+    .nav-bar {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        position: static;
+    }
+
+    .logo {
+        flex: 1;
+        font-size: 30px;
+        margin: 10px auto;
+        font-family: Satisfy;
+        color: #fde02f;
+    }
+
+    .nav-bar ul {
+        display: none;
+    }
+
+    .nav-bar ul li {
+        flex: 1;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .services {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .services .service-item {
+        flex: 1;
+        margin-bottom: -130px;
+        width: 400px;
+    }
+
+    .places-text {
+        margin-top: 200px;
+    }
+    }
+
+    @media all and (max-width: 928px) {
+    .banner .form input,
+    a {
+        font-size: 12px;
+    }
+    }
+
+    @media all and (max-width: 1173px) {
+    .banner .form {
+        background-color: transparent;
+    }
+    }
+
+    @media all and (max-width: 1194px) {
+    .places .card-box p {
+        font-size: 14px;
+    }
+    }
+
+    @media all and (max-width: 1086px) {
+    .places .cards .text {
+        line-height: 40px;
+    }
+
+    .cards .text .h2 {
+        font-size: 12px;
+    }
+
+    .cards .img-card img {
+        height: 260px;
+    }
+    }
+
+    @media all and (max-width: 974px) {
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-gap: 20px;
+    }
+
+    .card {
+        width: 300px;
+        height: 500px;
+        margin: auto;
+    }
+
+    .cards .text {
+        padding: 5px;
+        font-family: Barlow Condensed;
+    }
+    }
+
+    @media all and (max-width: 1334px) {
+    .about-img img {
+        width: 300px;
+        height: 500px;
+    }
+    }
+
+    @media all and (max-width: 1116px) {
+    .about {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-img {
+        flex: 1;
+        margin-bottom: 20px;
+    }
+
+    .about-text {
+        flex: 1;
+        margin: auto;
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-text h2 {
+        font-size: 35px;
+    }
+
+    .about-img img {
+        width: 400px;
+        height: 400px;
+    }
+    }
+
+</style>
+
+</html>

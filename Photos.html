@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My travel photos</title>
+</head>
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: transparent;
+        text-align-last: center;
+        border: 2px solid #000000;
+        border-style: dotted;
+    }
+    ul:hover{
+        backdrop-filter: blur(15px);
+    }
+
+    li {
+        float: left;
+        margin: 5px;
+        padding-left: 30px;
+        display: flex;
+        border-radius: 20px;        
+    }
+
+    li a {
+        display: block;
+        color: rgb(0, 0, 0);
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+        justify-content: center;
+    }
+</style>
+<div>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="map.html">Map</a></li>
+        <li><a href="Photos.html">Photos</a></li>
+        <li style="float:right; background-color: #04AA6D;text-align-last: center;">Login</li>
+    </ul>
+    <form>
+        <label for="image"> Please Enter your Image</label>
+        <input type = "file" name = "upload" accept = "image/*" multiple>
+    </form>
+</div>
+
+</html>
